@@ -135,7 +135,7 @@ abstract class Message implements \ArrayAccess
             if ($f->isExtension()) {
                 return $f->isRepeated()
                        ? count($this->_extensions[$name]) > 0
-                       : $this->_extensions[$name] !== NULL;
+                       : isset($this->_extensions[$name]) && ($this->_extensions[$name] !== NULL);
             } else {
                 return $f->isRepeated()
                        ? count($this->$name) > 0

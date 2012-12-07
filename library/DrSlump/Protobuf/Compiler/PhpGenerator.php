@@ -350,10 +350,10 @@ class PhpGenerator extends AbstractGenerator
     }
 
     protected function compileExtension(proto\FieldDescriptorProto $field, $ns, $indent)
-    {
+    {        
         $extendee = $this->normalizeNS($field->getExtendee());
-        $name = $this->normalizeNS($ns . '.' . $field->getName());
-        $field->setName($name);
+        $name = $this->normalizeNS($ns . '.' . $field->getName());        
+        $field->setName(str_replace("\\", ".", $name));
 
         $s[]= "\\$extendee::extension(function(){";
         $s[]= $this->compileField($field, $ns, $indent.'  ');
